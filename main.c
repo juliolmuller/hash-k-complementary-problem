@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "list.h"
+#include "kcomp.h"
 
 void main()
 {
@@ -17,5 +17,7 @@ void main()
     scanf("%d", &k);
   } while (k <= 0);
 
-  list_print(list);
+  k_complementares_varredura(list, k);
+  k_complementares_hash(list, k);
+  list_clear(list);
 }
