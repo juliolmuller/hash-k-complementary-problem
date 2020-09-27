@@ -27,15 +27,13 @@ int list_count(List *list)
 
 List *list_add(List *list, int value)
 {
-  if (!list) {
-    return list_create_node(value);
+  List *newNode = list_create_node(value);
+
+  if (list) {
+    newNode->next = list;
   }
-  List *aux = list;
-  while (aux->next) {
-    aux = aux->next;
-  }
-  aux->next = list_create_node(value);
-  return list;
+
+  return newNode;
 }
 
 int list_get(List *list, int index)
