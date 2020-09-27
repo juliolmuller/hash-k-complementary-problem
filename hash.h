@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include "list.h"
 
 typedef struct _hash {
@@ -53,11 +52,12 @@ HashTable *hash_create(const int tableSize)
 List *hash_insert(HashTable *hash, int value)
 {
   if (!hash || hash->count == hash->size) {
-    return false;
+    return NULL;
   }
 
   int i, position = hash_gen(value, hash->size);
   hash->items[position] = list_add(hash->items[position], value);
+  hash->count++;
 
   return hash->items[position];
 }
