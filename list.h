@@ -14,6 +14,17 @@ List *list_create_node(int value)
   return list;
 }
 
+int list_count(List *list)
+{
+  int count = 0;
+  List *aux = list;
+  while (aux) {
+    aux = aux->next;
+    count++;
+  }
+  return count;
+}
+
 List *list_add(List *list, int value)
 {
   if (!list) {
@@ -27,15 +38,20 @@ List *list_add(List *list, int value)
   return list;
 }
 
-int list_count(List *list)
+int list_get(List *list, int index)
 {
-  int count = 0;
   List *aux = list;
-  while (aux) {
-    aux = aux->next;
-    count++;
+  int count = list_count(list);
+
+  if (index >= count || index < 0) {
+    exit(1);
   }
-  return count;
+
+  while (index--) {
+    aux = aux->next;
+  }
+
+  return aux->value;
 }
 
 void list_print(List *list)
