@@ -15,7 +15,7 @@ void k_complementares_varredura(List *list, const int k)
   printf("\nAlgoritmo de varredura simples:\n");
   for (i = 0; i < count; i++) {
     for (j = 0; j < count; j++) {
-      if (arr[i] + arr[j] == k) {
+      if (arr[i] <= arr[j] && arr[i] + arr[j] == k) {
         printf("{%d, %d}\n", arr[i], arr[j]);
       }
     }
@@ -37,7 +37,7 @@ void k_complementares_hash(List *list, const int k)
   aux = list;
   while (aux) {
     int targetValue = k - aux->value;
-    if (hash_search(hash, targetValue)) {
+    if (aux->value <= targetValue && hash_search(hash, targetValue)) {
       printf("{%d, %d}\n", aux->value, targetValue);
     }
     aux = aux->next;
