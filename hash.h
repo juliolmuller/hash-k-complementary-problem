@@ -57,15 +57,9 @@ List *hash_insert(HashTable *hash, int value)
   }
 
   int i, position = hash_gen(value, hash->size);
-  List *aux = hash->items[position];
-  while (aux) {
-    aux = aux->next;
-  }
-  aux = list_create_node(value);
-  aux->next = hash->items[position];
-  hash->items[position] = aux;
+  hash->items[position] = list_add(hash->items[position], value);
 
-  return aux;
+  return hash->items[position];
 }
 
 List *hash_search(HashTable *hash, int value)
