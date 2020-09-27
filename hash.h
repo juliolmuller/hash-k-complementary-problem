@@ -51,7 +51,7 @@ HashTable *hash_create(const int tableSize)
 
 List *hash_insert(HashTable *hash, int value)
 {
-  if (!hash || hash->count == hash->size) {
+  if (!hash) {
     return NULL;
   }
 
@@ -78,6 +78,21 @@ List *hash_search(HashTable *hash, int value)
     aux = aux->next;
   }
   return NULL;
+}
+
+void hash_print(HashTable *hash)
+{
+  int i;
+  for (i = 0; i < hash->size; i++) {
+    List *aux = hash->items[i];
+    printf("\nPosicao %d: ", i);
+
+    while (aux) {
+      printf("%d ", aux->value);
+      aux = aux->next;
+    }
+  }
+  printf("\n");
 }
 
 void hash_free(HashTable *hash)
